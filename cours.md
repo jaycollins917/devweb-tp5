@@ -59,24 +59,50 @@ Le **m** signifie Module. L'extension permet à Node.js de savoir exactement com
 * Extension .js classique (CommonJS par défaut) : Utilise historiquement la syntaxe require() et module.exports (ex: const http = require("node:http");).V
 
 
-```js
-npm init
-# question interactives
 npm install slugify					// ça permet de locker des versions de projet
-# added 1 package in 2s
-
 cat main.js
-# import slugify from "slugify"
-# console.log(slugify("C'est un test ♥ !"));
+import slugify from "slugify"
+console.log(slugify("C'est un test ♥ !"));
 
 node main.js
-# C'est-un-test-love-!
+C'est-un-test-love-!
 
 Avec npx on peut directement executer des fonctions, sans installer des package
 
 typescript  javascript version typée, pour imposer des règles
 
 node vs bun vs deno => tester avec bun ou deno le tp6
+
+## node VS nodemon
+
+**node** est l'exécuteur officiel de javascript
+* Comportement statique: à chaque modif de code, le serveur ne se relance pas
+* Utilisé pour la production
+
+**nodemon** est un wrapper, un outil de développement qui englobe node
+* Comportement dynamique: il relance le serveur à chaque modif de code
+* Utilisé en mode développement, localement sur le pc.
+
+dans le fichier package.json :
+
+    "http-dev": "cross-env NODE_ENV=development nodemon server-http.mjs",
+    "http-prod": "cross-env NODE_ENV=production node server-http.mjs"
+
+
+* npm run http-dev
+
+Surveille si on a fait des modifs dans le script server-http.mjs et relance à chaque modifs
+Si on ajoute cette ligne :
+console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = development
+=> le serveur est redémarré et le nouveau message est affiché dans le terminal
+
+
+* npm run http-prod
+
+console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = production
+Mais si on fait une modif, le serveur n'est pas relancé
+
+
 
 
 

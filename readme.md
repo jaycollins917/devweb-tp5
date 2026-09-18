@@ -59,5 +59,49 @@ async function requestListener(_request, response) {
 }
 ```
 
+## Question 1.6 indiquer ce que cette commande a modifié dans votre projet.
+
+Dans node_modules
+* Ajout du module cross-env
+* Ajout du module nodemon
+
+Dans les fichiers
+* Ajout du fichier package-lock.json avec l'indicateur U à droite
+* Modification du fichier package.json et ajout indicateur M
+
+Cela sert à dire qui faudra faire un commit dans Git
+
+## Question 1.7 quelles sont les différences entre les scripts http-dev et http-prod ?
+
+Dans le fichier package.json :
+    "http-dev": "cross-env NODE_ENV=development nodemon server-http.mjs",
+    "http-prod": "cross-env NODE_ENV=production node server-http.mjs"
+
+Pour lancer le serveur, on peut choisir soit le module nodemon, soit le module nodemon.
+
+## node VS nodemon
+
+**node** est l'exécuteur officiel de javascript
+* Comportement statique: à chaque modif de code, le serveur ne se relance pas
+* Utilisé pour la production
+
+**nodemon** est un wrapper, un outil de développement qui englobe node
+* Comportement dynamique: il relance le serveur à chaque modif de code
+* Utilisé en mode développement, localement sur le pc.
+
+
+* npm run http-dev
+
+Surveille si on a fait des modifs dans le script server-http.mjs et relance à chaque modifs
+Si on ajoute cette ligne :
+console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = development
+=> le serveur est redémarré et le nouveau message est affiché dans le terminal
+
+* npm run http-prod
+
+console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = production
+Mais si on fait une modif, le serveur n'est pas relancé
+
+
 
 
