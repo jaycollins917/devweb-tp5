@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import createHttpError from "http-errors";
+import createError from "http-errors";
 
 const host = "localhost";
 const port = 8000;
@@ -31,19 +31,33 @@ app.get("/random/:nb", async function (request, response, next) {
 
 // Templating EJS + HttpError
 app.get("/random/:nb", async function (request, response, next) {
-  const length = Number.parseInt(request.params.nb, 10);
+    const length = Number.parseInt(request.params.nb, 10);
 
-  // Vérification si le paramètre n'est pas un nombre
-  if (Number.isNaN(length)) {
-    return next(createError(400));                          // crée une erreur HTTP 400 et la transmet à la chaîne de gestion d'erreurs d'Express.
-  }
+    // Vérification si le paramètre n'est pas un nombre
+    if (Number.isNaN(length)) {
+      return next(createError(400));                          // crée une erreur HTTP 400 et la transmet à la chaîne de gestion d'erreurs d'Express.
+    }
 
-  const numbers = Array.from({ length }).map(() =>            // Génération du tableau de nombres aléatoires
-    Math.floor(100 * Math.random())
-  );
-  const welcome = `Voici ${length} nombre(s) aléatoire(s) :`; // Chaîne de caractères transmise à la vue
+    const numbers = Array.from({ length }).map(() =>            // Génération du tableau de nombres aléatoires
+      Math.floor(100 * Math.random())
+    );
+    const welcome = `Voici ${length} nombre(s) aléatoire(s) :`; // Chaîne de caractères transmise à la vue
 
-  return response.render("random", { numbers, welcome });     // Appel du moteur de rendu EJS (il ira chercher views/random.ejs)
+    return response.render("random", { numbers, welcome });     // Appel du moteur de rendu EJS (il ira chercher views/random.ejs)
+});
+
+// Nouvelles routes pour meilleure gestion d'erreurs
+app.use((request, response, next) => {
+  console.debug(`default route handler : ${request.url}`);
+  return next(createError(404));
+});
+
+app.use((error, _request, response, _next) => {
+  console.debug(`default error handler: ${error}`);
+  const status = error.status ?? 500;
+  const stack = app.get("env") === "development" ? error.stack : "";
+  const result = { code: status, message: error.message, stack };
+  return response.render("error", result);
 });
 
 // app.listen(port, host); Ligne remplacée par celles ci-dessous

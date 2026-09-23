@@ -184,17 +184,31 @@ Quand on force un rafraîchissement, on a le code 200 car le navigateur force le
 En mode http tel qu'utilisé dans ce TP, la fonction cache n'est pas utilisée.
 En mode express, avec le middleware express.static, la fonction cache est intégrée et active, ce qui fait qu'on obtient le code 304 en mode express, et non en mode http.
 
+## Question 2.7 - Vérifier que l’affichage change bien entre le mode production et le mode development.
+
+En mode développement, sur une page qui n'existe pas j'ai:
+
+Error 404
+Not Found
+
+NotFoundError: Not Found
+    at file:///C:/Users/Onyx/Mon%20Drive/Universit%C3%A9/Progs/Web%202/TP5/devweb-tp5/server-express.mjs:52:15
+    at Layer.handleRequest (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\router\index.js:342:13)
+    at C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\router\index.js:297:9
+    at processParams (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\router\index.js:582:12)
+    at next (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\router\index.js:291:5)
+    at SendStream.error (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\serve-static\index.js:120:7)
+    at SendStream.emit (node:events:514:28)
+    at SendStream.error (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\send\index.js:168:17)
+    at SendStream.onStatError (C:\Users\Onyx\Mon Drive\Université\Progs\Web 2\TP5\devweb-tp5\node_modules\send\index.js:315:12)
+
+Et en mode production j'ai :
+
+Error 404
+Not Found
 
 
-
-
-
-
-
-
-
-
-## Question 2.7
 
 
 
