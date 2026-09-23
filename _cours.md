@@ -109,28 +109,13 @@ console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = develop
 console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = production
 Mais si on fait une modif, le serveur n'est pas relancé
 
-## Question 1.8 donner les codes HTTP reçus par votre navigateur pour chacune des quatre pages précédentes.
 
-http://localhost:8000/index.html
-Hello Again!
-This is served from a file
-
-http://localhost:8000/random.html
-93
-
-http://localhost:8000/
-404: NOT FOUND
-
-http://localhost:8000/dont-exist
-404: NOT FOUND
-
-Le switch/case du .mjs dit ce qu'il faut faire si on accède à ces différentes adresses.
 
 ## Git hub
 
-git add .
-git commit -m "feat: ajout de slugify et serveur express"
-git push
+git add .                   // On sélectionne les fichiers modifiés.
+git commit -m "feat"        // On valide la version sur son ordinateur.
+git push                    // On envoie la version validée sur le serveur distant.
 
 ## Eslint
 
