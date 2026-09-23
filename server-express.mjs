@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import createHttpError from "http-errors";
 
 const host = "localhost";
 const port = 8000;
@@ -28,17 +29,21 @@ app.get("/random/:nb", async function (request, response, next) {
   return response.send(`<html><ul>${contents}</ul></html>`);
 });   */
 
-// Templating EJS
+// Templating EJS + HttpError
 app.get("/random/:nb", async function (request, response, next) {
   const length = Number.parseInt(request.params.nb, 10);
 
-  const numbers = Array.from({ length }).map(() =>                // Génération du tableau de nombres aléatoires
+  // Vérification si le paramètre n'est pas un nombre
+  if (Number.isNaN(length)) {
+    return next(createError(400));                          // crée une erreur HTTP 400 et la transmet à la chaîne de gestion d'erreurs d'Express.
+  }
+
+  const numbers = Array.from({ length }).map(() =>            // Génération du tableau de nombres aléatoires
     Math.floor(100 * Math.random())
   );
+  const welcome = `Voici ${length} nombre(s) aléatoire(s) :`; // Chaîne de caractères transmise à la vue
 
-   const welcome = `Voici tes ${length} nombres aléatoires :`;    // Chaîne de caractères transmise à la vue
-  
-  return response.render("random", { numbers, welcome });         // Appel du moteur de rendu EJS (il ira chercher views/random.ejs)
+  return response.render("random", { numbers, welcome });     // Appel du moteur de rendu EJS (il ira chercher views/random.ejs)
 });
 
 // app.listen(port, host); Ligne remplacée par celles ci-dessous
