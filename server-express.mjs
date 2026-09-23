@@ -1,6 +1,11 @@
 import express from "express";
 import morgan from "morgan";
 import createError from "http-errors";
+import logger from "loglevel"
+
+// Remplacement du niveau de verbosité, de DEBUG à WARN
+//logger.setLevel(logger.levels.DEBUG)
+logger.setLevel(logger.levels.WARN)
 
 const host = "localhost";
 const port = 8000;
@@ -48,12 +53,15 @@ app.get("/random/:nb", async function (request, response, next) {
 
 // Nouvelles routes pour meilleure gestion d'erreurs
 app.use((request, response, next) => {
-  console.debug(`default route handler : ${request.url}`);
+  
+  // console.debug(`default route handler : ${request.url}`);
+  logger.debug(`default route handler : ${request.url}`);       // Module "loglevel qui remplace affichage console"
   return next(createError(404));
 });
 
 app.use((error, _request, response, _next) => {
-  console.debug(`default error handler: ${error}`);
+  //console.debug(`default error handler: ${error}`);
+  logger.error(`default error handler: ${error}`);              // logger
   const status = error.status ?? 500;
   const stack = app.get("env") === "development" ? error.stack : "";
   const result = { code: status, message: error.message, stack };
@@ -64,9 +72,20 @@ app.use((error, _request, response, _next) => {
 const server = app.listen(port, host);
 
 server.on("listening", () =>
+
+  logger.info(
+      `HTTP listening on http://${server.address().address}:${server.address().port} with mode '${process.env.NODE_ENV}'`
+    )
+  );
+
+  logger.info(`File ${import.meta.url} executed.`);
+
+
+  /*
   console.info(
     `HTTP listening on http://${server.address().address}:${server.address().port} with mode '${process.env.NODE_ENV}'`,
   ),
 );
 
 console.info(`File ${import.meta.url} executed.`);
+*/

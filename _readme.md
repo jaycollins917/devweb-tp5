@@ -208,21 +208,23 @@ Et en mode production j'ai :
 Error 404
 Not Found
 
+Modifier le niveau de verbosité: 
 
+**AVANT**
+[nodemon] 3.1.14
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node server-express.mjs`
+File file:///C:/Users/Onyx/Mon%20Drive/Universit%C3%A9/Progs/Web%202/TP5/devweb-tp5/server-express.mjs executed.
+HTTP listening on http://::1:8000 with mode 'development'
 
+**APRES**
+[nodemon] 3.1.14
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node server-express.mjs`
 
+--> Effectivement les logs d'info ont disparus.
 
-# Un joli titre
-## Un autre titre sympa
-### Titre 3
-#### Titre 4
-##### Titre 5
-
-* Un paragraphe
-*En italique*
-**En gras**
-## Du code
-```js
-typeof 42
-typeof 42.15        //renvoient tous les deux "number"
-```
