@@ -119,8 +119,25 @@ http://localhost:8000/dont-exist
 
 Le switch/case du .mjs dit ce qu'il faut faire si on accède à ces différentes adresses.
 
+## Git hub
+
+git add .
+git commit -m "feat: ajout de slugify et serveur express"
+git push
 
 
+
+
+# framework Express
+
+On voit que la gestion manuelle des routes avec un grand switch va devenir complexe et laborieuse. 
+Les frameworks serveur comme http://expressjs.com/, https://koajs.com/, https://www.fastify.io/ ou https://hapi.dev/ 
+vont s’occuper de cette plomberie et proposer une API pour enregistrer des handlers aux différentes routes de l’application.
+
+## Création du serveur
+
+
+* Créer le fichier server-express.mjs et exécuter la commande suivante : npm install --save express http-errors loglevel morgan
 
 
 
@@ -145,7 +162,6 @@ Le switch/case du .mjs dit ce qu'il faut faire si on accède à ces différentes
 
 **En gras**
 
-## Du code
 
 ```js
 typeof 42

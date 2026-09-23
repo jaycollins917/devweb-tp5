@@ -11,7 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "cross-env": "^10.1.0"
+    "cross-env": "^10.1.0",
+    "slugify": "^1.6.9"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",

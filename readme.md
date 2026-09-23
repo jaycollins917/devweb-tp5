@@ -92,12 +92,17 @@ Pour lancer le serveur, on peut choisir soit le module nodemon, soit le module n
 
 * npm run http-dev
 
+**Environnement en mode développement:**
+
 Surveille si on a fait des modifs dans le script server-http.mjs et relance à chaque modifs
+
 Si on ajoute cette ligne :
 console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = development
 => le serveur est redémarré et le nouveau message est affiché dans le terminal
 
 * npm run http-prod
+
+**Environnement en mode production (ie client):**
 
 console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = production
 Mais si on fait une modif, le serveur n'est pas relancé
@@ -105,3 +110,21 @@ Mais si on fait une modif, le serveur n'est pas relancé
 
 
 
+# Un joli titre
+## Un autre titre sympa
+### Titre 3
+#### Titre 4
+##### Titre 5
+
+* Un paragraphe
+
+*En italique*
+
+**En gras**
+
+## Du code
+
+```js
+typeof 42
+typeof 42.15        //renvoient tous les deux "number"
+```

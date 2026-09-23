@@ -67,19 +67,22 @@ async function requestListener(request, response) {
     const contents = await fs.readFile("index.html", "utf8");
 
     // Traitement pour la route /random/:nb
-    if (request.url.startsWith("/random/")) {         // Si l'adresse commence par random
-      const parts = request.url.split("/");           // Découpe l'url pour extraire le nombre entré
-      const count = parseInt(parts[2], 10);           // Et le convertit en entier
+    if (request.url.startsWith("/random/")) {
+      // Si l'adresse commence par random
+      const parts = request.url.split("/"); // Découpe l'url pour extraire le nombre entré
+      const count = parseInt(parts[2], 10); // Et le convertit en entier
 
       // Si le paramètre n'est pas un nombre valide
       if (isNaN(count) || count < 1) {
         response.writeHead(400);
-        return response.end(`<html><p>400: BAD REQUEST - Nombre invalide</p></html>`);
+        return response.end(
+          `<html><p>400: BAD REQUEST - Nombre invalide</p></html>`,
+        );
       }
 
       // Génération de la liste des nombres
       const numbers = Array.from({ length: count }, () =>
-        Math.floor(100 * Math.random())
+        Math.floor(100 * Math.random()),
       );
       const htmlList = numbers.map((n) => `<li>${n}</li>`).join("");
 
@@ -87,15 +90,15 @@ async function requestListener(request, response) {
       return response.end(`<html><ul>${htmlList}</ul></html>`);
     }
 
-
-
     switch (request.url) {
       case "/index.html":
         response.writeHead(200);
         return response.end(contents);
       case "/random.html":
         response.writeHead(200);
-        return response.end(`<html><p>${Math.floor(100 * Math.random())}</p></html>`);
+        return response.end(
+          `<html><p>${Math.floor(100 * Math.random())}</p></html>`,
+        );
       default:
         response.writeHead(404);
         return response.end(`<html><p>404: NOT FOUND</p></html>`);
@@ -115,4 +118,3 @@ server.listen(port, host, () => {
 console.log("NODE_ENV =", process.env.NODE_ENV);
 console.log("ici");
 console.log("hello");
-
