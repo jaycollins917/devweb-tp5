@@ -153,10 +153,31 @@ content-length      81                                        // Taille exacte d
 L'évènement listening est déclenché quand le port est prêt à écouter à l'adresse localhost/8000.
 Ouvrir un un port sur un hôte (app.listen(port, host)) n'est pas immédiat, et mettre un écouteur sur cette fonction permet de vérifier que le port est en écoute avant de recevoir de possibles données.
 
+## Question 2.5 - Indiquer quelle est l’option (activée par défaut) qui redirige / vers /index.html ?
+
+L'option par défaut de *app.use(express.static("static"))* est index.html, et pointe directement ce fichier du répertoir static.
+Quand le navigateur du client demandera le fichier css associé, pas besoin de créer de route, car le navigateur n'a pas le droit de lire le disque dur du serveur.
 
 
-## Question 2.5
-## Question 2.6
+
+## Question 2.6 - Visiter la page d’accueil puis rafraichir (Ctrl+R) et ensuite forcer le rafraichissement (Ctrl+Shift+R). Quels sont les codes HTTP sur le fichier style.css ? Justifier.
+
+Pour un rafraîchissement simple, on a le code 304 en réponse: les données viennent du cache.
+Quand on force un rafraîchissement, on a le code 200 car le navigateur force le serveur à renvoyer le fichier CSS même s'il n'a pas été modifié.
+
+En mode http tel qu'utilisé dans ce TP, la fonction cache n'est pas utilisée.
+En mode express, avec le middleware express.static, la fonction cache est intégrée et active, ce qui fait qu'on obtient le code 304 en mode express, et non en mode http.
+
+
+
+
+
+
+
+
+
+
+
 ## Question 2.7
 
 

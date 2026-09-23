@@ -1,7 +1,8 @@
 express : https://expressjs.com/
 http-errors : https://www.npmjs.com/package/http-errors
 loglevel : https://www.npmjs.com/package/loglevel
-morgan : https://expressjs.com/en/resources/middleware/morgan.html (ou sur npm : https://www.npmjs.com/package/morgan)
+middleware morgan : https://expressjs.com/en/resources/middleware/morgan.html (ou sur npm : https://www.npmjs.com/package/morgan)
+middleware express.static
 
 
 # NODE.JS
@@ -145,13 +146,31 @@ vont s’occuper de cette plomberie et proposer une API pour enregistrer des han
 
 ## Création du serveur
 
-
 * Créer le fichier server-express.mjs et exécuter la commande suivante : npm install --save express http-errors loglevel morgan
 
+# middleware
 
+Un middleware dans Express est une fonction intermédiaire qui s'intercale entre la réception de la requête HTTP (de la part du client) et l'envoi de la réponse.
 
+Dans le fonctionnement de express.static() :
 
+Par défaut, l'option index vaut "index.html". Quand le client demande la racine /, le middleware cherche automatiquement un fichier nommé index.html dans le dossier spécifié (static/) et le sert sans avoir besoin de taper l'URL complète /index.html.
 
+Si tu voulais changer ce comportement (par exemple pour servir home.html par défaut), tu écrirais : express.static("static", { index: "home.html" }).
+
+# middleware morgan
+
+Morgan est un middleware de journalisation HTTP (HTTP request logger) pour Node.js et Express.
+
+Son rôle unique est d'intercepter chaque requête HTTP qui arrive sur ton serveur pour enregistrer (loguer) 
+automatiquement des informations à son sujet dans la console ou dans un fichier de logs.
+
+Affiche ce genre de truc dans LA CONSOLE DE VS CODE
+
+GET / 304 3.124 ms - -
+GET /style.css 304 1.842 ms - -
+GET /random/5 200 12.411 ms - 81
+GET /fichier-inexistant 404 0.981 ms - 149
 
 
 

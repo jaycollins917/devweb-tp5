@@ -6,9 +6,16 @@ const port = 8000;
 
 const app = express();
 
+if (app.get("env") === "development") {
+  app.use(morgan("dev"));
+}
+
+app.use(express.static("static"));
+
+/* Avant l'utilisation de express.static
 app.get(["/", "/index.html"], async function (request, response, next) {
   response.sendFile("index.html", { root: "./" });
-});
+});         */
 
 app.get("/random/:nb", async function (request, response, next) {
   const length = request.params.nb;
