@@ -1,4 +1,4 @@
-## Question 1.1 donner la liste des en-têtes de la réponse HTTP du serveur.
+## Question 1.1 - Donner la liste des en-têtes de la réponse HTTP du serveur.
 
 * Connection : keep-alive
 * Date : Thu, 17 Sep 2026 03:17:13 GMT (varie selon le moment de la requête)
@@ -7,7 +7,7 @@
 
 À chaque requête externe, le serveur répondra ceci en premier.
 
-## Question 1.2 donner la liste des en-têtes qui ont changé depuis la version précédente.
+## Question 1.2 - Donner la liste des en-têtes qui ont changé depuis la version précédente.
 
 Ajout de :
 * Content-Type: application/json  
@@ -16,11 +16,11 @@ Ajout de :
 Suppression de :
 * Transfer-Encoding : chunked
 
-## Question 1.3 que contient la réponse reçue par le client ?
+## Question 1.3 - Que contient la réponse reçue par le client ?
 
 Elle ne contient rien, la page tourne dans le vide
 
-## Question 1.4 quelle est l’erreur affichée dans la console ? Retrouver sur https://nodejs.org/api le code d’erreur affiché.
+## Question 1.4 - Quelle est l’erreur affichée dans la console ? Retrouver sur https://nodejs.org/api le code d’erreur affiché.
 
 Voici l'erreur affichée :
 
@@ -37,7 +37,7 @@ ENOENT (No such file or directory): Commonly raised by fs operations to indicate
 
 En clair, cette erreur est communément levée par les opérations filesystem dont le composant ou le chemin n'existe pas.
 
-## Question 1.5 donner le code de requestListener() modifié avec gestion d’erreur en async/await.
+## Question 1.5 - Donner le code de requestListener() modifié avec gestion d’erreur en async/await.
 
 ```js
 import fs from "node:fs/promises";
@@ -59,7 +59,7 @@ async function requestListener(_request, response) {
 }
 ```
 
-## Question 1.6 indiquer ce que cette commande a modifié dans votre projet.
+## Question 1.6 - Indiquer ce que cette commande a modifié dans votre projet.
 
 Dans node_modules
 * Ajout du module cross-env
@@ -71,7 +71,7 @@ Dans les fichiers
 
 Cela sert à dire qui faudra faire un commit dans Git
 
-## Question 1.7 quelles sont les différences entre les scripts http-dev et http-prod ?
+## Question 1.7 - Quelles sont les différences entre les scripts http-dev et http-prod ?
 
 Dans le fichier package.json :
     "http-dev": "cross-env NODE_ENV=development nodemon server-http.mjs",
@@ -108,6 +108,57 @@ console.log("NODE_ENV =", process.env.NODE_ENV);   // Affiche NODE_ENV = product
 Mais si on fait une modif, le serveur n'est pas relancé
 
 
+## Question 2.1 - Donner les URL des documentations de chacun des modules installés par la commande précédente.
+
+express : https://expressjs.com/
+http-errors : https://www.npmjs.com/package/http-errors
+loglevel : https://www.npmjs.com/package/loglevel
+morgan : https://expressjs.com/en/resources/middleware/morgan.html (ou sur npm : https://www.npmjs.com/package/morgan)
+
+
+## Question 2.2 - Vérifier que les trois routes fonctionnent.
+
+npm run express-dev
+
+http://localhost:8000/              // Affichage page "Hello Again"
+http://localhost:8000/index.html    // Affichage page "Hello Again"
+http://localhost:8000/random/5      // Affiche 5 nombres au hasard
+
+
+## Question 2.3 - Lister les en-têtes des réponses fournies par Express. Lesquelles sont nouvelles par rapport au serveur HTTP ?
+
+*En-têtes de réponses en HTTP:*
+connection          keep-alive
+content-type        text/html
+date                Wed, 23 Sep 2026 21:50:13 GMT
+keep-alive          timeout=5
+transfer-encoding   chunked
+
+*En-têtes de réponses en EXPRESS:*
+connection          keep-alive
+content-length      81
+content-type        text/html; charset=utf-8
+date                Wed, 23 Sep 2026 21:48:39 GMT
+etag                W/"51-lvCDTV2O/HDg2tJhx6Lyx7CM5tU"
+keep-alive          timeout=5
+x-powered-by        Express
+
+Les nouvelles en-têtes sont:
+x-powered-by        Express                                   // Pour notifier que le framework Express est utilisé
+etag                W/"51-lvCDTV2O/HDg2tJhx6Lyx7CM5tU"        // C'est le code pour récupérer la page en cache
+content-length      81                                        // Taille exacte de la réponse avant de l'envoyer (alors qu'en HTTP c'était en envoyé par morceaux *chunked*)
+
+## Question 2.4 - Quand l’événement listening est-il déclenché ?
+
+L'évènement listening est déclenché quand le port est prêt à écouter à l'adresse localhost/8000.
+Ouvrir un un port sur un hôte (app.listen(port, host)) n'est pas immédiat, et mettre un écouteur sur cette fonction permet de vérifier que le port est en écoute avant de recevoir de possibles données.
+
+
+
+## Question 2.5
+## Question 2.6
+## Question 2.7
+
 
 
 # Un joli titre
@@ -117,13 +168,9 @@ Mais si on fait une modif, le serveur n'est pas relancé
 ##### Titre 5
 
 * Un paragraphe
-
 *En italique*
-
 **En gras**
-
 ## Du code
-
 ```js
 typeof 42
 typeof 42.15        //renvoient tous les deux "number"

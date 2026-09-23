@@ -1,3 +1,9 @@
+express : https://expressjs.com/
+http-errors : https://www.npmjs.com/package/http-errors
+loglevel : https://www.npmjs.com/package/loglevel
+morgan : https://expressjs.com/en/resources/middleware/morgan.html (ou sur npm : https://www.npmjs.com/package/morgan)
+
+
 # NODE.JS
 
 Node.js est un environnement d'exécution (un runtime) qui permet d'exécuter du code JavaScript hors du navigateur web, principalement côté serveur (backend).
@@ -125,8 +131,11 @@ git add .
 git commit -m "feat: ajout de slugify et serveur express"
 git push
 
+## Eslint
 
-
+ESLint est un outil d'analyse statique de code (appelé un linter) pour JavaScript et Node.js.
+1. Les erreurs de syntaxe et de logique (Bugs)
+2. Le respect des règles de style (Qualité du code)
 
 # framework Express
 
